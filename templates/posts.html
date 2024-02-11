@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Домашня сторінка
+{% endblock %}
+{% block body %}
+<div class="container">
+    <h1>Перелік лотів</h1>
+
+    {% if lots|length > 0 %}
+        {% for el in lots %}
+        <div class="alert alert-info">
+            <h2>{{ el.title }}</h2>
+            <h3>Поточна ціна - {{ el.current_val }}$</h3>
+            <p><b>Дата: {{ el.date.strftime("%d.%m.%Y %H:%M") }}</b></p>
+            <a href="/posts/{{ el.id }}" class="btn btn-warning">Детальніше про лот</a>
+        </div>
+        {% endfor %}
+    {% else %}
+    <p>Немає ніякого активного лоту</p>
+    {% endif %}
+</div>
+{% endblock %}

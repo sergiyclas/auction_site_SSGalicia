@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Інформація про лот
+{% endblock %}
+{% block body %}
+<div class="container">
+    <h1>{{ lot.title }}</h1>
+
+    <div class="alert alert-info">
+
+        <h2>Стартова ціна - {{ lot.min_val }}$</h2>
+        <h2>Поточна ціна - {{ lot.current_val }}</h2>
+        <h2>Поточний власник: {{ user.name }}</h2>
+        <h5>Опис товару: {{ lot.desct }}</h5>
+        <h1>ЗАГРУЗИ ФОТО ТОВАРУ СПРАВА</h1>
+
+        <p><b>Дата: {{ lot.date.strftime("%d.%m.%Y %H:%M") }}</b></p>
+
+        {% if current_user.id == lot.owner_id %}
+        <a href="/posts/{{ lot.id }}/del" class="btn btn-danger">Видалити лот</a>
+        <a href="/posts/{{ lot.id }}/update" class="btn btn-success">Редагувати інформацію про лот</a>
+        {% else %}
+        <a href="" class="btn btn-danger">Збільшити ставку(хз як то буде виглядати, придумай щось)</a>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

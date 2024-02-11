@@ -1,0 +1,307 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Домашня сторінка
+{% endblock %}
+{% block body %}
+        <!--Header-->
+        <nav>
+            <div class="nav-wrapper deep-purple accent-4">
+                 
+                    <a href="#" class="brand-logo">Logo</a>
+                    <ul id="nav-mobile" class="navig right hide-on-med-and-down">
+                        <li> <input placeholder="Що будемо шукати?" class="white grey-text autocomplete search-input" type="text"></li>
+                        <li><a class="filter-button top-button">Фільтрувати</a></li>
+                        <li> <a class="add-new-auction top-button">Додати аукціон</a></li>
+                        <li> <a class="add-new-auction top-button">Мої аукціони</a></li>
+                        <li><a class="btn-floating btn-large waves-effect account black"><i class="material-icons black">person</i></a></li>
+                    </ul>
+            </div>
+          </nav>
+                
+
+          <!--Carousel-->
+          <div class="slider">
+            <ul class="slides">
+              <li>
+                
+                <img src="https://lorempixel.com/580/250/nature/1"> <!-- random image -->
+                <div class="caption center-align">
+                  <h3>Встигни вхопити свій куш</h3>
+                  <h5 class="light grey-text text-lighten-3">Злови товар за найнижчою ціною</h5>
+                </div>
+              </li>
+              <li>
+                <img src="https://lorempixel.com/580/250/nature/2"> <!-- random image -->
+                <div class="caption left-align">
+                  <h3>Роби ставки на товар</h3>
+                  <h5 class="light grey-text text-lighten-3">Вистави ту ціну, яку ТИ готовий заплатити</h5>
+                </div>
+              </li>
+              <li>
+                <img src="https://lorempixel.com/580/250/nature/3"> <!-- random image -->
+                <div class="caption right-align">
+                  <h3>Торгуйся з іншими людьми в реальному часі</h3>
+                  <h5 class="light black-text text-lighten-3">Не дозволь конкурентам вихопити твій приз з під-носа</h5>
+                </div>
+              </li>
+              <li>
+                <img src="https://lorempixel.com/580/250/nature/4"> <!-- random image -->
+                <div class="caption center-align">
+                  <h3>Створюй власні лоти</h3>
+                  <h5 class="light grey-text text-lighten-3">Нехай люди поконкурують за те, щоб твій товар опинився саме в них</h5>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+
+
+            <!--Product cards-->
+            <div class="container">
+          <div class="row">
+            <div class="col s12"><h2 class="interesting center-align">Вас може зацікавити:</h2></div>
+
+
+
+
+            <div class="col s12">
+
+                <div class="card">
+                    
+                        <div class="col s6 ">
+                            <div class="card-part">
+                                <h5 class="product-name ">
+                                    Ноутбук TOSHIBA Z30-C I5-6300U (23)</h5>
+                                <p class="product-description">Ноутбук привезений особисто з Німечини, всі деталі протестовані та перевірені. Будуть додаткові питання пишіть. 
+                                    За доставку платить покупець при отриманні товару. Ноутбук привезений особисто з Німечини, всі деталі протестовані та перевірені. Будуть додаткові питання пишіть. 
+                                    За доставку платить покупець при отриманні товару. 
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col s3 ">
+                            <div class="card-image ">
+                                <img class="card-part card-photo" src="photo/laptop.jpg">
+                            </div>
+                        </div>
+    
+                        <div class="col s3">
+                            <div class="product-lot ">
+                                <div class="lot-info">
+                                    <p class="product-info">Стартова ціна: </p>
+                                    <p class="product-info">Поточна ціна: </p>
+                                    <p class="product-info">Початок аукціону: </p>
+                                    <p class="product-info">Кінець аукціону: </p>
+                                </div>
+                                <div class="card-action center-align">
+                                    <a href="#" >Перейти на аукціон</a>
+                                </div>
+                            </div>
+                        </div>
+    
+                  </div>
+
+            </div>
+            
+            <div class="col s12">
+                
+                <div class="card">
+                    
+                    <div class="col s6 ">
+                        <div class="card-part">
+                            <h5 class="product-name ">
+                                Кофта чоловіча сіра</h5>
+                            <p class="product-description">Ноутбук привезений особисто з Німечини, всі деталі протестовані та перевірені. Будуть додаткові питання пишіть. 
+                                За доставку платить покупець при отриманні товару. Ноутбук привезений особисто з Німечини, всі деталі протестовані та перевірені. Будуть додаткові питання пишіть. 
+                                За доставку платить покупець при отриманні товару. 
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col s3 ">
+                        <div class="card-image ">
+                            <img class="card-part card-photo" src="photo/kofta1.jpg">
+                        </div>
+                    </div>
+
+                    <div class="col s3">
+                        <div class="product-lot ">
+                            <div class="lot-info">
+                                <p class="product-info">Стартова ціна: </p>
+                                <p class="product-info">Поточна ціна: </p>
+                                <p class="product-info">Початок аукціону: </p>
+                                <p class="product-info">Кінець аукціону: </p>
+                            </div>
+                            <div class="card-action center-align">
+                                <a href="#" >Перейти на аукціон</a>
+                            </div>
+                        </div>
+                    </div>
+
+              </div>
+
+            </div>
+
+            <div class="col s12">
+
+                <div class="card">
+                    
+                    <div class="col s6 ">
+                        <div class="card-part">
+                            <h5 class="product-name ">
+                                Чоловіча футболка бренду The North Face </h5>
+                            <p class="product-description">Чоловіча футболка бренду The North Face.
+                                Розмір на фото.Колір чорний.Оригінал Два принта на футболці спереду великий і позаду.Лейба марки .
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col s3 ">
+                        <div class="card-image ">
+                            <img class="card-part card-photo" src="photo/tshirt1.jpg">
+                        </div>
+                    </div>
+
+                    <div class="col s3">
+                        <div class="product-lot ">
+                            <div class="lot-info">
+                                <p class="product-info">Стартова ціна: </p>
+                                <p class="product-info">Поточна ціна: </p>
+                                <p class="product-info">Початок аукціону: </p>
+                                <p class="product-info">Кінець аукціону: </p>
+                            </div>
+                            <div class="card-action center-align">
+                                <a href="#" >Перейти на аукціон</a>
+                            </div>
+                        </div>
+                    </div>
+
+              </div>
+
+            </div>
+
+            <div class="col s12">
+
+                <div class="card">
+                    
+                    <div class="col s6 ">
+                        <div class="card-part">
+                            <h5 class="product-name ">
+                                Миша Esperanza EM102K Чорна</h5>
+                            <p class="product-description">Esperanza EM102 — провідна оптична миша із сучасним профільуванням, призначена для настільних комп'ютерів та ноутбуків. Тихе колесо прокручування та спеціальне гумове покриття в контакті з рукою забезпечують надзвичайно високий рівень комфорту.
+
+                                Характеристики
+                                
+                                Підключення  -  Дротове
+                                Інтерфейс підключення  -  USB
+                                Форм-фактор  -  Компактна
+                                Тип датчика  -  Оптичний
+                                Роздільна здатність  -  800 dpi
+                                Сумісність із ОС  -  Linux/Chrome OS/Mac OS/Microsoft Windows.
+                                
+                                Джерело живлення  -  Порт USB
+                                Довжина шнура  -  1.4 м
+                                Колір  -  чорний
+                                Для обох рук (симетричний дизайн)
+                                Габарити  -  65 x 34 x 103 мм
+                                Вага  -  216 г
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col s3 ">
+                        <div class="card-image ">
+                            <img class="card-part card-photo" src="photo/mouse.jpg">
+                        </div>
+                    </div>
+
+                    <div class="col s3">
+                        <div class="product-lot ">
+                            <div class="lot-info">
+                                <p class="product-info">Стартова ціна: </p>
+                                <p class="product-info">Поточна ціна: </p>
+                                <p class="product-info">Початок аукціону: </p>
+                                <p class="product-info">Кінець аукціону: </p>
+                            </div>
+                            <div class="card-action center-align">
+                                <a href="#" >Перейти на аукціон</a>
+                            </div>
+                        </div>
+                    </div>
+
+              </div>
+
+            </div>
+
+            <div class="col s12">
+
+                <div class="card">
+                    
+                    <div class="col s6 ">
+                        <div class="card-part">
+                            <h5 class="product-name ">
+                                Іграшковий дерев'яний пістолет USP Geometric з гри STANDOFF 2</h5>
+                            <p class="product-description"> Іграшковий дерев'яний пістолет USP Geometric з гри STANDOFF 2, трохи пошкоджена упаковка  від 1 грн 
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col s3 ">
+                        <div class="card-image ">
+                            <img class="card-part card-photo" src="photo/pistol.jpg">
+                        </div>
+                    </div>
+
+                    <div class="col s3">
+                        <div class="product-lot ">
+                            <div class="lot-info">
+                                <p class="product-info">Стартова ціна: </p>
+                                <p class="product-info">Поточна ціна: </p>
+                                <p class="product-info">Початок аукціону: </p>
+                                <p class="product-info">Кінець аукціону: </p>
+                            </div>
+                            <div class="card-action center-align">
+                                <a href="#" >Перейти на аукціон</a>
+                            </div>
+                        </div>
+                    </div>
+
+              </div>
+
+            </div>
+            
+          </div>
+        </div>
+
+    
+        
+
+        <footer class="page-footer deep-purple accent-4">
+            <div class="container">
+              
+               
+                  <h5 class="white-text center-align">Зв'яжіться з нами чезер соцмережі</h5>
+               
+                
+                  <h5 class="white-text center-align">LOGO</h5>
+
+                    <div class="social">
+                        <a href="#" class="social_icon instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social_icon facebook">
+                            <i class="fa-brands fa-facebook"></i>
+                        </a>
+                        <a href="#" class="social_icon github">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        <a href="#" class="social_icon twitter">
+                            <i class="fa-brands fa-twitter"></i>
+                        </a>
+                        
+                    </div>
+
+            </div>
+            <div class="footer-copyright">
+              <div class="container center-align">
+              © 2014 Copyright Text
+              </div>
+            </div>
+          </footer>
+{% endblock %}

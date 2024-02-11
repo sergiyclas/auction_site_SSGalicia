@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="uke">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+    <title>Реєстрація</title>
+    <script>
+        function checkPasswordMatch() {
+            var password = document.getElementById("password").value;
+            var confirm_password_value = document.getElementById("password2").value;
+            var confirm_password = document.getElementById("password2");
+
+            if (password !== confirm_password_value) {
+                confirm_password.setAttribute("pattern", ".{0}");;
+            } else {
+                confirm_password.setAttribute("pattern", ".{8,}");;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="bar">
+        <a href="/"> <! Посилання верхнього логотипу>
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Логотип">
+        </a>
+    </div>
+    <div class="container">
+        <div class="form-container">
+            <p class="title">Реєстрація</p>
+            <p class="title-login">Будь ласка, заповніть дані</p>
+            <form class="form" method="POST">
+                <div class="input-group">
+                    <label for="email">Електронна пошта</label>
+                    <input type="email" name="email" id="email" placeholder="Електронна пошта" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Пароль</label>
+                    <input type="password" name="password" id="password" pattern=".{8,}" title="Пароль повинен містити принаймні 8 символів" placeholder="Пароль" required oninput="checkPasswordMatch()">
+                </div>
+                <div class="input-group">
+                    <label for="password2">Повторіть пароль</label>
+                    <input type="password" name="password2" id="password2" pattern=".{8,}" title="Пароль повинен співпадати з попереднім" placeholder="Пароль" required oninput="checkPasswordMatch()">
+                </div>
+                <button class="button-login">Увійти</button>
+                <div class="singin-group">
+                    <label for="password">Вже маєш аккаунту?</label>
+                    <a href="{{ url_for('login_page') }}">Зареєструватися</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="bar">
+        <a href="/"> <! Посилання нижнього логотипу>
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Логотип">
+        </a>
+    </div>
+</body>
+</html>

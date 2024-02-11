@@ -1,0 +1,176 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background: rgba(197, 197, 230, 0.411);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+}
+
+.bar{
+    background-color: #ffffff;
+}
+
+.form-container {
+    width: 85rem;
+    height: 40rem;
+    border: 1px solid #92929284;
+    background-color: #ffffff;
+    padding: 1.5rem 6rem 0 6rem;
+}
+
+.login-group {
+    display: flex;
+}
+
+.login-group p {
+    text-align: left;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+}
+  
+.title {
+    color: #F6B72A;
+    margin-right: 1rem;
+}
+
+.title-login {
+    color: #000000;
+}
+
+.setting-group {
+    margin-top: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.img p {
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1rem;
+    font-weight: 600;
+    margin: 0.75rem 0 0.75rem 0;
+}
+
+#img-button {
+    background-image: none;
+    border: 1px solid #92929284;
+    margin-top: 0.75rem;
+    width: 15rem;
+    height: 15rem;
+}
+
+.input-right {
+    width: 54rem;
+}
+
+.input-right p {
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1rem;
+    font-weight: 600;
+    margin: 0.75rem 0 0.75rem 0;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-top: 0.75rem;
+    font-size: 1rem;
+    line-height: 1.25rem;
+}
+
+.input-group label {
+    text-align: end;
+    width: 15rem;
+    display: block;
+    color: #000000;
+    margin-right: 0.5rem;
+}
+
+.input-group input {
+    width: 24rem;
+    border: 1px solid #92929284;
+    background-color: #ffffff;
+    padding: 0.8rem 0.8rem;
+    color: #000000;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-group button {
+    display: block;
+    width: 15rem;
+    background-color: #ffffff;
+    padding: 0.75rem;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.3rem;
+    font-weight: 700;
+    color: #F6B72A;
+    border: 1px solid #F6B72A;
+    font-weight: 600;
+    transition: all 400ms;
+    margin-top: 2rem;
+}
+.button-group button:hover{
+    background-color: #F6B72A;
+    color: #ffffff;
+}
+
+
+button {
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.3rem;
+    font-weight: 700;
+    padding: 0.7rem;
+    margin: 3rem 0 0.75rem 0;
+    width: 15rem;
+    color: #F6B72A;
+    background-color: #ffffff;
+    border: 1px solid #F6B72A;
+}
+
+button:hover {
+    background-color: #F6B72A;
+    color: #ffffff;
+    transition: all 400ms;
+}
+
+#img-button {
+    background-image: none;
+    border: 1px solid #92929284;
+    margin-top: 0.75rem;
+    width: 15rem;
+    height: 15rem;
+}
+
+#seve-button {
+    margin-left: 19.5rem;
+}
+
+
+.input-group p {
+    text-align: end;
+    width: 15rem;
+    display: block;
+    color: #000000;
+    margin-right: 0.5rem;
+}
+
+.photochka {
+    height: 15rem;
+    width: 15rem;
+}

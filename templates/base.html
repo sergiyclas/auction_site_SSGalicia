@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ukr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% block links %}{% endblock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<div class="bar">
+    <nav class="about-nav">
+        <a href="/about">Про нас</a>
+        <a href="/posts">Усі лоти</a>
+    </nav>
+    <nav class="img-nav">
+        <img id="logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="Логотип">
+    </nav>
+
+        <nav class="login-nav">
+            {% if not current_user.is_authenticated %}
+                <a href="/login">Вхід</a>
+            {% else %}
+                <a href="/login">{{ current_user.email}}</a>
+            {% endif %}
+        </nav>
+</div>
+<script>
+    document.getElementById("logo").addEventListener("click", function() {
+        window.location.href = "/home";
+    });
+    document.addEventListener("DOMContentLoaded", function() {
+            console.log("Сторінка повністю завантажилась!");
+            checkInputEmpty();
+        });
+</script>
+
+{% block body %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ukr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/singin.css') }}">
+    <title>Вхід</title>
+</head>
+<body>
+    <div class="bar">
+        <a href="/"> <! Посилання верхнього логотипу>
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Логотип">
+        </a>
+    </div>
+    <div class="container">
+        <div class="form-container">
+            <p class="title">Вхід</p>
+            <p class="title-login">Увійдіть через вашу електронну пошту</p>
+            <form class="form" method="POST">
+                <div class="input-group">
+                    <label for="email">Електронна пошта</label>
+                    <input type="email" name="email" id="email" placeholder="Електронна пошта" required>
+                </div>
+                <div class="input-group">
+                    <div class="password-group">
+                        <label for="password">Пароль</label>
+                        <a href="ШЛЯХ ДО ЗАБУТОГО ПАРОЛЯ">Забули пароль?</a>
+                    </div>
+                    <input type="password" name="password" id="password" pattern=".{8,}" title="Пароль повинен містити принаймні 8 символів" placeholder="Пароль" required>
+                </div>
+                <button class="button-login">Увійти</button>
+                <div class="singup-group">
+                    <label for="password">Не маєте аккаунту?</label>
+                    <a href="{{ url_for('register_page') }}">Зареєструватися</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="bar">
+        <a href="/"> <! Посилання нижнього логотипу>
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Логотип">
+        </a>
+    </div>
+</body>
+</html>

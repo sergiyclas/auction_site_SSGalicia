@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block links %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/lotpage.css') }}">
+{% endblock %}
+
+
+{% block title %}
+Додати лот
+{% endblock %}
+
+{% block body %}
+    <div class="form-container">
+    <div class="login-group">
+        <p class="title">Виставити лот:</p>
+    </div>
+    <div class="setting-group">
+        <form class="img-form" method="POST" enctype="multipart/form-data">
+            <label for="imageInput" class="image-label">
+                <img id="img-button" src="{{ url_for('avatar')}}" alt="Картинка">
+                <span class="upload-text">Додати фото</span>
+            </label>
+            <input type="file" id="imageInput" name="image" style="display:none" accept="image/*">
+        </form>
+        <form class="input-right" method="POST" enctype="multipart/form-data">
+            <div class="input-group">
+                <label for="title">Назва лоту:</label>
+                <input type="text" name="title" id="title" placeholder="Назва лоту" required>
+            </div>
+            <div class="input-group">
+                <label for="min_val">Стартова ціна:</label>
+                <input type="number" name="min_val" id="min_val" placeholder="Стартова ціна" required>
+            </div>
+            <div class="input-group">
+                <label for="descr">Опис лоту:</label>
+                <input type="text" name="descr" id="descr" placeholder="Опис лоту" required>
+            </div>
+            <div class="create">
+                <button type="submit">Створити лот</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+    <script>
+        document.getElementById("imageInput").addEventListener("change", function(event) {
+            var image = document.getElementById("img-button");
+            var file = event.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                image.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+    </script>
+{% endblock %}

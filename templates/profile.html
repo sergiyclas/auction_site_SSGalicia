@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ukr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+    <title>Вхід</title>
+    <script>
+        function checkPasswordMatch() {
+            var password = document.getElementById("password").value;
+            var confirm_password_value = document.getElementById("confirm_new_password").value;
+            var confirm_password = document.getElementById("confirm_new_password");
+
+            if (password !== confirm_password_value) {
+                confirm_password.setAttribute("pattern", "ldkfofkepgrmdmdpgkrkljopsrjklxocx{1}");;
+            } else {
+                confirm_password.setAttribute("pattern", ".{8,}");;
+            }
+        }
+         function checkInputEmpty() {
+            var inputs = document.querySelectorAll('.input-group input');
+            var labels = document.querySelectorAll('.input-group label');
+
+            inputs.forEach(function(input, index) {
+                if (input.value !== '') {
+                    labels[index].style.display = 'none';
+                } else {
+                    labels[index].style.display = 'block';
+                }
+            });
+        }
+
+    </script>
+</head>
+{% block body %}
+<div class="bar">
+    <nav class="about-nav">
+        <a href="/about">Про нас</a>
+        <a href="/posts">Усі лоти</a>
+    </nav>
+    <nav class="img-nav">
+        <img id="logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="Логотип">
+    </nav>
+
+        <nav class="login-nav">
+            {% if not current_user.is_authenticated %}
+                <a href="/login">Вхід</a>
+            {% else %}
+                <a href="/login">{{ current_user.email}}</a>
+            {% endif %}
+        </nav>
+</div>
+<script>
+    document.getElementById("logo").addEventListener("click", function() {
+        window.location.href = "/home";
+    });
+</script>
+    <div class="form-container">
+        <div class="login-group">
+            <p class="title">Профіль користувача:</p>
+            <p class="title-login">{{ current_user.email }}</p>
+        </div>
+        <div class="setting-group">
+            {% if current_user.avatar %}
+                <img id="photochka" src="{{ url_for('avatar') }}" alt="Аватар">
+            {% else %}
+                <img id="photochka" src="{{ url_for('static', filename='images/default_avatar.png') }}" alt="Зображення за замовчуванням">
+            {% endif %}
+
+            <form action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+    <label for="file">Виберіть файл:</label>
+    <input type="file" id="file" name="file">
+    <button type="submit">Завантажити</button>
+</form>
+
+
+            <div class="input-right">
+                <form class="uniq form" method="POST">
+                    <div class="input-group">
+                        {% if current_user.name %}
+                        <p for="name">Ім'я:</p>
+                        <input oninput="checkInputEmpty()"
+ type="text" name="name" id="name" value="{{ current_user.name }}" placeholder="Ім'я" required>
+                        <label>Будь ласка, заповніть дані</label>
+                        {% else %}
+                        <p for="name">Ім'я:</p>
+                        <input oninput="checkInputEmpty()"
+ type="text" name="name" id="name" placeholder="Ім'я" required>
+                        <label>Будь ласка, заповніть дані</label>
+                        {% endif %}
+                    </div>
+                    <div class="input-group">
+                        {% if current_user.name %}
+                        <p for="surname">Прізвище:</p>
+                        <input oninput="checkInputEmpty()"
+ type="text" name="surname" id="surname" value="{{ current_user.surname }}" placeholder="Прізвище" required>
+                        <label>Будь ласка, заповніть дані</label>
+                        {% else %}
+                        <p for="surname">Прізвище:</p>
+                        <input oninput="checkInputEmpty()"
+ type="text" name="surname" id="surname" placeholder="Прізвище" required>
+                        <label>Будь ласка, заповніть дані</label>
+                        {% endif %}
+                    </div>
+                    <div class="input-group">
+                        {% if current_user.name %}
+                        <p for="phone">Телефон:</p>
+                        <input oninput="checkInputEmpty()"
+ type="tel" name="phone" id="phone" pattern="[0-9]{12,12}" value="{{ current_user.phone }}" placeholder="Номер: 380123456789" required>
+                        <label>Будь ласка, заповніть дані</label>
+                        {% else %}
+                        <p for="phone">Телефон:</p>
+                        <input oninput="checkInputEmpty()"
+ type="tel" name="phone" id="phone" pattern="[0-9]{12,12}" placeholder="Номер: 380123456789" required>
+                        <label>Будь ласка, заповніть дані</label>
+                        {% endif %}
+
+                    </div>
+                    <p> Змінна паролю</p>
+                    <div class="input-group">
+                        <p for="password">Старий пароль:</p>
+                        <input oninput="checkInputEmpty()"
+ type="password" name="password" id="password" pattern=".{8,}" title="Пароль повинен містити принаймні 8 символів" placeholder="Пароль">
+                        <label>Будь ласка, заповніть дані</label>
+                    </div>
+                    <div class="input-group">
+                        <p for="new_password">Новий пароль:</p>
+                        <input oninput="checkInputEmpty()"
+ type="password" name="new_password" id="new_password" pattern=".{8,}" title="Пароль повинен містити принаймні 8 символів" placeholder="Пароль" oninput="checkPasswordMatch()">
+                        <label>Будь ласка, заповніть дані</label>
+                    </div>
+                    <div class="input-group">
+                        <p for="confirm_new_password">Повторіть новий пароль:</p>
+                        <input oninput="checkInputEmpty()"
+ type="password" name="confirm_new_password" id="confirm_new_password" pattern=".{8,}" title="Пароль повинен співпадати з попереднім" placeholder="Новий пароль" oninput="checkPasswordMatch()">
+                        <label>Будь ласка, заповніть дані</label>
+                    </div>
+                    <div>
+                        <button type="submit" id="save-button" class="button-profile">Зберегти зміни</button>
+                    </div>
+                    </form>
+            </div>
+        </div>
+        <div class="button-group">
+            <a href="/create_lots">
+                <button id="expose-button">Виставити лот</button>
+            </a>
+            <a href="/profile/{{ current_user.id }}/lots">
+                <button id="my-button">Мої аукціони</button>
+            </a>
+            <a href="/logout">
+                <button id="log-out">Вийти з аккаунту</button>
+            </a>
+
+        </div>
+    </div>
+ <script>
+        document.getElementById("imageInput").addEventListener("change", function(event) {
+            var image = document.getElementById("img-button");
+            var file = event.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                image.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+    </script>
+
+{% endblock %}

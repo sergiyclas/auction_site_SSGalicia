@@ -1,0 +1,48 @@
+.bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid;
+    border-color: #92929284;
+    width: 100%;
+    height: 4rem;
+    color: #ffffff;
+}
+
+.bar nav {
+    margin: 0 1.5rem 0 1.5rem;
+    display: flex;
+    align-items: center;
+    width: 33%;
+}
+
+.login-nav {
+    justify-content: end;
+}
+
+.img-nav {
+    justify-content: center;
+}
+
+.about-nav {
+    justify-content: start;
+}
+
+.bar a {
+    text-align: left;
+    font-size: 1.25rem;
+    line-height: 1.5625rem;
+    font-weight: 700;
+    color: #000000;
+    margin: 0 1.5rem 0 1.5rem;
+    text-decoration: none;
+}
+
+.bar a:hover {
+    color: #F6B72A;
+    transition: all 400ms;
+}
+
+.bar img {
+    max-height: 3.9rem;
+}
