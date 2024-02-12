@@ -2,13 +2,11 @@ import sqlite3
 
 from flask import render_template, redirect, request, url_for, flash, make_response
 from flask_login import login_user, login_required, logout_user, current_user
-from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
 from datetime import datetime, timedelta
 from werkzeug.security import check_password_hash, generate_password_hash
 from models import db, Lot, User
 from app import app, login_manager
-from UserLogin import UserLogin
 
 
 def upload_date():
@@ -45,39 +43,85 @@ def about():
     return render_template('about.html')
 
 
-@app.route('/posts', methods= ['POST', 'GET'])
+@app.route('/posts', methods=['POST', 'GET'])
 def posts():
     upload_date()
 
-    order_ = 'date'
-    sort_ = 'desc'
-    status_ = 'Active'
+    sort_ = 'sortByDate_desc'
+    status_ = 'all'
     if request.method == 'POST':
-        order_ = request.form['order']
-        sort_ = request.form['sort']
-        status_ = request.form['status']
+        sort_ = request.form.get('sort')  # Отримання значення 'sort' з форми
+        status_ = request.form.get('status')  # Отримання значення 'status' з форми
 
-    if order_ == 'date' and sort_ == 'desc':
-        lots = Lot.query.filter_by(status=status_).order_by(Lot.date.desc()).all()
-    elif order_ == 'title' and sort_ == 'desc':
-        lots = Lot.query.filter_by(status=status_).order_by(Lot.name.desc()).all()
-    elif order_ == 'min_val' and sort_ == 'desc':
-        lots = Lot.query.filter_by(status=status_).order_by(Lot.min_val.desc()).all()
-    elif order_ == 'title' and sort_ == 'asc':
-        lots = Lot.query.filter_by(status=status_).order_by(Lot.title.asc()).all()
-    elif order_ == 'min_val' and sort_ == 'asc':
-        lots = Lot.query.filter_by(status=status_).order_by(Lot.min_val.asc()).all()
+    if sort_ == 'sortByDate_asc':
+        if status_ == 'active':
+            lots = Lot.query.filter_by(status='Active').order_by(Lot.date.asc()).all()
+        elif status_ == 'inactive':
+            lots = Lot.query.filter_by(status='Inactive').order_by(Lot.date.asc()).all()
+        else:
+            lots = Lot.query.order_by(Lot.date.asc()).all()
+    elif sort_ == 'sortByDate_desc':
+        if status_ == 'active':
+            lots = Lot.query.filter_by(status='Active').order_by(Lot.date.desc()).all()
+        elif status_ == 'inactive':
+            lots = Lot.query.filter_by(status='Inactive').order_by(Lot.date.desc()).all()
+        else:
+            lots = Lot.query.order_by(Lot.date.desc()).all()
+    elif sort_ == 'sortByPrice_asc':
+        if status_ == 'active':
+            lots = Lot.query.filter_by(status='Active').order_by(Lot.min_val.asc()).all()
+        elif status_ == 'inactive':
+            lots = Lot.query.filter_by(status='Inactive').order_by(Lot.min_val.asc()).all()
+        else:
+            lots = Lot.query.order_by(Lot.min_val.asc()).all()
+    elif sort_ == 'sortByPrice_desc':
+        if status_ == 'active':
+            lots = Lot.query.filter_by(status='Active').order_by(Lot.min_val.desc()).all()
+        elif status_ == 'inactive':
+            lots = Lot.query.filter_by(status='Inactive').order_by(Lot.min_val.desc()).all()
+        else:
+            lots = Lot.query.order_by(Lot.min_val.desc()).all()
     else:
-        lots = Lot.query.filter_by(status=status_).order_by(Lot.date.asc()).all()
+        lots = Lot.query.order_by(Lot.date.asc()).all()
     return render_template('posts.html', lots=lots)
 
 
-@app.route('/posts/<int:id>')
+@app.route('/posts/<int:id>', methods=['POST', 'GET'])
 def post_detail(id):
     upload_date()
     lot = Lot.query.get(id)
     user = User.query.get(lot.current_owner_id)
-    return render_template("post_detail.html", lot=lot, user=user)
+    if request.method == 'POST' and request.form.get('price') != "":
+        price = request.form.get('price')
+        price = int(price)
+
+        if lot.current_val is None and price > lot.min_val or lot.current_val is not None and price > lot.current_val:
+            lot.current_owner_id = current_user.id
+            lot.current_val = price
+            db.session.commit()
+        else:
+            flash("Мало запропонували")
+            redirect(url_for('posts'))
+
+    lot_start_date = lot.date
+
+    # Тривалість лоту в днях
+    lot_duration_days = 7  # Замініть це на тривалість свого лоту в днях
+
+    # Розрахунок дати закінчення лоту
+    lot_end_date = lot_start_date + timedelta(days=lot_duration_days)
+
+    # Розрахунок залишкового часу до закінчення лоту
+    time_remaining = lot_end_date - datetime.now()
+
+    # Форматування залишкового часу у вигляді "дні:години:хвилини:секунди"
+    days = time_remaining.days
+    hours, remainder = divmod(time_remaining.seconds, 3600)
+    minutes, seconds = divmod(remainder, 60)
+
+    time_remaining_formatted = f"{days}days:{hours:02d}hours:{minutes:02d}min:{seconds:02d}sec"
+
+    return render_template("post_detail.html", lot=lot, user=user, date=time_remaining_formatted)
 
 
 @app.route('/posts/<int:id>/del')
@@ -129,7 +173,6 @@ def post_update(id):
 @login_required
 def create_lots():
     upload_date()
-    print(request.method)
     if request.method == "POST":
         if current_user.name is None:
             flash("Ви не заповнили поле ім'я")
@@ -195,7 +238,7 @@ def login_page():
             flash('Пошта або пароль не вірні')
     else:
         flash('Будь ласка, заповніть всі поля')
-    url_parts = request.url.split('?next=/')
+    # url_parts = request.url.split('?next=/')
     # return url_parts[1]
     return render_template('login.html')
 
@@ -282,7 +325,6 @@ def profile():
 @app.route('/avatar')
 @login_required
 def avatar():
-    print('Пішло')
     upload_date()
     img = None
     if not current_user.avatar:

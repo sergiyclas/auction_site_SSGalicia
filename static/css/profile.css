@@ -170,7 +170,17 @@ button:hover {
     margin-right: 0.5rem;
 }
 
-.photochka {
+#photochka {
     height: 15rem;
     width: 15rem;
 }
+
+#lox {
+    display: flex;
+    flex-direction: column;
+}
+
+.red_label {
+    color: red;
+}
+

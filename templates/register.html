@@ -41,10 +41,10 @@
                     <label for="password2">Повторіть пароль</label>
                     <input type="password" name="password2" id="password2" pattern=".{8,}" title="Пароль повинен співпадати з попереднім" placeholder="Пароль" required oninput="checkPasswordMatch()">
                 </div>
-                <button class="button-login">Увійти</button>
+                <button class="button-login">Зареєструватися</button>
                 <div class="singin-group">
                     <label for="password">Вже маєш аккаунту?</label>
-                    <a href="{{ url_for('login_page') }}">Зареєструватися</a>
+                    <a href="{{ url_for('login_page') }}">Увійти</a>
                 </div>
             </form>
         </div>

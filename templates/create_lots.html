@@ -15,14 +15,7 @@
         <p class="title">Виставити лот:</p>
     </div>
     <div class="setting-group">
-        <form class="img-form" method="POST" enctype="multipart/form-data">
-            <label for="imageInput" class="image-label">
-                <img id="img-button" src="{{ url_for('avatar')}}" alt="Картинка">
-                <span class="upload-text">Додати фото</span>
-            </label>
-            <input type="file" id="imageInput" name="image" style="display:none" accept="image/*">
-        </form>
-        <form class="input-right" method="POST" enctype="multipart/form-data">
+        <form class="input-right" action="{{ url_for('create_lots') }}" method="POST" enctype="multipart/form-data">
             <div class="input-group">
                 <label for="title">Назва лоту:</label>
                 <input type="text" name="title" id="title" placeholder="Назва лоту" required>
@@ -34,6 +27,10 @@
             <div class="input-group">
                 <label for="descr">Опис лоту:</label>
                 <input type="text" name="descr" id="descr" placeholder="Опис лоту" required>
+            </div>
+            <div class="input-group">
+                <label for="file">Виберіть файл:</label>
+                <input type="file" id="file" name="file">
             </div>
             <div class="create">
                 <button type="submit">Створити лот</button>

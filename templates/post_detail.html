@@ -1,29 +1,78 @@
 {% extends 'base.html' %}
 
+{% block links %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/lotview.css') }}">
+{% endblock %}
+
 {% block title %}
 Інформація про лот
 {% endblock %}
 {% block body %}
-<div class="container">
-    <h1>{{ lot.title }}</h1>
+<div class="form-container">
+    <div class="login-group">
+        <p class="title">{{ lot.title }}</p>
+    </div>
+    <div class="setting-group">
+        <div class="img-form">
+            <label for="imageInput">
+                <img id="img-button" src="{{ url_for('avatar') }}" alt="Картинка">
+            </label>
+        </div>
+        <div class="input-right">
+            <div class="input-group">
+                <label for="name">Поточна ціна:</label>
+                {% if lot.current_val == None %}
+                <label class="after" for="name">--- {{ lot.min_val }}$</label>
+                {% else %}
+                <label class="after" for="name">{{ lot.current_val }}$</label>
+                {% endif %}
+            </div>
+            <div class="input-group">
+                <label for="name">Поточний власник: </label>
 
-    <div class="alert alert-info">
+                {% if lot.current_val == None %}
+                <label class="after" for="name">---</label>
+                {% else %}
+                <label class="after" for="name">{{ user.name }}</label>
+                {% endif %}
+            </div>
+            <div class="input-group">
+                <label for="text">Опис лоту:</label>
+                <label class="after-after" for="name">{{ lot.descr }}</label>
+            </div>
+            <div class="input-group">
+                <label for="text">Залишилось часу:</label>
 
-        <h2>Стартова ціна - {{ lot.min_val }}$</h2>
-        <h2>Поточна ціна - {{ lot.current_val }}</h2>
-        <h2>Поточний власник: {{ user.name }}</h2>
-        <h5>Опис товару: {{ lot.desct }}</h5>
-        <h1>ЗАГРУЗИ ФОТО ТОВАРУ СПРАВА</h1>
-
-        <p><b>Дата: {{ lot.date.strftime("%d.%m.%Y %H:%M") }}</b></p>
-
-        {% if current_user.id == lot.owner_id %}
-        <a href="/posts/{{ lot.id }}/del" class="btn btn-danger">Видалити лот</a>
-        <a href="/posts/{{ lot.id }}/update" class="btn btn-success">Редагувати інформацію про лот</a>
-        {% else %}
-        <a href="" class="btn btn-danger">Збільшити ставку(хз як то буде виглядати, придумай щось)</a>
-        {% endif %}
-
+                {% if lot.status == 'Active' %}
+                <label class="after" for="name">{{ date }}</label>
+                {% else %}
+                <label class="after" for="name">час вийшов</label>
+                {% endif %}
+            </div>
+            <form action="{{ url_for('post_detail', id=lot.id) }}" class="input-group" method='POST'>
+                <div class="input-group">
+                    <label for="price">Ваша ставка:</label>
+                    <input id='price' name="price" type="number" placeholder="Введіть число">
+                </div>
+                    <button type="submit" class="create" >Зробити ставку</button>
+            </form>
+            <div>
+                {% if current_user.id == lot.owner_id %}
+                <div class="input-group">
+                    <a href="/posts/{{ lot.id }}/del" class="btn btn-danger">
+                        <div class="create">
+                            <button>Видалити лот</button>
+                        </div>
+                    </a>
+                    <a href="/posts/{{ lot.id }}/update" class="btn btn-danger">
+                        <div class="create">
+                            <button>Редагувати інформацію про лот</button>
+                        </div>
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

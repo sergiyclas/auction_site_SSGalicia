@@ -5,14 +5,75 @@
 {% endblock %}
 {% block body %}
 <div class="container">
+    <style>
+        #active-section {
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        .sorting-btn {
+            display: block;
+            width: 17rem;
+            background-color: #ffffff;
+            padding: 0.75rem;
+            text-align: center;
+            font-size: 1rem;
+            line-height: 1.3rem;
+            font-weight: 700;
+            color: #F6B72A;
+            border: 1px solid #F6B72A;
+            font-weight: 600;
+            transition: all 400ms;
+            margin-top: 2rem;
+        }
+
+        .sorting-btn:hover{
+            background-color: #F6B72A;
+            color: #ffffff;
+        }
+        .sorting-sel {
+            width: 17rem;
+            border: 1px solid #92929284;
+            background-color: #ffffff;
+            padding: 1rem 1rem;
+            color: #000000;
+        }
+    </style>
+
     <h1>Перелік лотів</h1>
+<form method="POST" id="active-section">
+    <select name="sort" id="active-sorting" class="sorting-sel">
+        <option value="sortByDate_asc">Сортувати за зростанням дати</option>
+        <option value="sortByDate_desc">Сортувати за спаданням дати</option>
+        <option value="sortByPrice_asc">Сортувати за зростанням ціни</option>
+        <option value="sortByPrice_desc">Сортувати за спаданням ціни</option>
+    </select>
+    <select name="status" id="inactive-sorting" class="sorting-sel"> <!-- Змінено ім'я на 'status' -->
+        <option value="active">Активні</option>
+        <option value="inactive">Неактивні</option>
+        <option value="all">Всі</option>
+    </select>
+    <button type="submit" class="sorting-btn">Застосувати</button> <!-- Змінено тип на 'submit' -->
+</form>
 
     {% if lots|length > 0 %}
         {% for el in lots %}
         <div class="alert alert-info">
             <h2>{{ el.title }}</h2>
+
+            {% if el.current_val == None %}
+            <h3>Поточна ціна - {{ el.min_val }}$</h3>
+            {% else %}
             <h3>Поточна ціна - {{ el.current_val }}$</h3>
-            <p><b>Дата: {{ el.date.strftime("%d.%m.%Y %H:%M") }}</b></p>
+            {% endif %}
+
+            {% if el.status == 'Active' %}
+            <p><b>дата ставки: {{ el.date.strftime("%H:%M %d.%m.%Y") }}</b></p>
+            {% else %}
+            <p><b>час вийшов</b></p>
+            {% endif %}
+
             <a href="/posts/{{ el.id }}" class="btn btn-warning">Детальніше про лот</a>
         </div>
         {% endfor %}
@@ -20,4 +81,4 @@
     <p>Немає ніякого активного лоту</p>
     {% endif %}
 </div>
-{% endblock %}
+{% endblock %}]
